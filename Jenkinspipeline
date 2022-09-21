@@ -43,7 +43,6 @@ finally{
 SlaclNotification('CurrentBuild.result')
 }
 }
-//Node clsoing
 
 //code Snippet for sending slack notifications
 
@@ -70,6 +69,6 @@ def slackNotifications(String buildStatus = 'STARTED') {
   }
 
   // Send notifications
-  slackSend (color: colorCode, message: summary, channel: "#buildprojects")
+  slackSend (color: colorCode, message: summary, channel: "buildprojects")
 }
 //Node clsoing
