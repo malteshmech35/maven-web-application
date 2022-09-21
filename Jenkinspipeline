@@ -9,6 +9,8 @@ echo "Job Name is: ${env.JOB_NAME}"
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 
+try{
+SlackNotification('STARTED')
 stage ('CheckOutCode') {
 git credentialsId: '63a3ae83-9898-4036-9c49-76a0147947e2', url: 'https://github.com/malteshmech35/maven-web-application.git'
 }
@@ -31,6 +33,15 @@ sshagent(['d925f957-bd25-4ca8-9e30-cbf1dc0666fa']){
 }
 }
 
+}}//try block closing
+catch (e){
+SlackNotification('CurrentBuild.result')
+throw e
+}
+
+finally{
+SlaclNotification('CurrentBuild.result')
+}
 }
 //Node clsoing
 
