@@ -35,21 +35,22 @@ sshagent(['d925f957-bd25-4ca8-9e30-cbf1dc0666fa']){
 
 }//try block closing
 catch (e){
-SlackNotification('Failed')
+slackNotifications('FAILED')
 throw e
 }
-
 finally{
-SlaclNotifications('CurrentBuild.result')
+slackNotifications(currentBuild.result)
 }
 
-//Node clsoing
 
-//code Snippet for sending slack notifications
+}//Node closing
+
+//Code Snippet for sending slack notifications.
 
 def slackNotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
- // buildStatus =  buildStatus ?: 'SUCCESS'
+  //buildStatus =  buildStatus ?: 'SUCCESS'
+  buildStatus = buildStatus ? "SUCCESS":"FAILURE"
 
   // Default values
   def colorName = 'RED'
@@ -59,7 +60,7 @@ def slackNotifications(String buildStatus = 'STARTED') {
 
   // Override default values based on build status
   if (buildStatus == 'STARTED') {
-    colorName= 'YELLOW'
+    colorName = 'YELLOW'
     colorCode = '#FFFF00'
   } else if (buildStatus == 'SUCCESS') {
     colorName = 'GREEN'
