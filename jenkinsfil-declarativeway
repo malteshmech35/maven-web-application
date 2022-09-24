@@ -12,7 +12,7 @@ triggers {
   //cron ' * * * * * '
 }
 
-properties([parameters([choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', name: 'BranchName'), string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+properties([parameters([choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', name: 'BranchName'), string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
 
 tools{
 maven 'maven3.8.6'
@@ -23,7 +23,7 @@ stages{
 stage('CheckOutCode'){
 steps{
     slackNotifications('STARTED')
-git credentialsId: '63a3ae83-9898-4036-9c49-76a0147947e2',"$params.BranchName", url: 'https://github.com/malteshmech35/maven-web-application.git'
+git credentialsId: '63a3ae83-9898-4036-9c49-76a0147947e2',"${params.BranchName}", url: 'https://github.com/malteshmech35/maven-web-application.git'
 }
 }
 //This stage will do the build
