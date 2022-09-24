@@ -11,7 +11,13 @@ triggers {
   pollSCM( '* * * * *')
   //cron ' * * * * * '
 }
-parameters([choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', Name: 'BranchName'), string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value',]])
+parameters
+{
+
+choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', Name: 'BranchName')
+string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value'
+
+}
 
 tools{
 maven 'maven3.8.6'
