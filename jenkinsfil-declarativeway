@@ -11,7 +11,8 @@ triggers {
   pollSCM( '* * * * *')
   //cron ' * * * * * '
 }
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), parameters([choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', name: 'BranchName'), string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+
+properties([parameters([choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', name: 'BranchName'), string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value', name: 'Name')]), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 
 tools{
 maven 'maven3.8.6'
