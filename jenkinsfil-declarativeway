@@ -15,9 +15,8 @@ parameters
 {
 
 choice(choices: ['master', 'development', 'uat', 'test'], description: 'Select the Branch Name', Name: 'BranchName')
-string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value'
+string(defaultValue: 'maltesh software solutions', description: 'give the name parameter value', name: 'Name')
 
-}
 
 tools{
 maven 'maven3.8.6'
